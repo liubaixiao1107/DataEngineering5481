@@ -1,0 +1,64 @@
+[
+  {
+    "people": [
+      "Mary E. Brunkow",
+      "Fred Ramsdell",
+      "Shimon Sakaguchi"
+    ],
+    "organizations": [
+      "Nobel Assembly at Karolinska Institutet",
+      "Karolinska Institutet"
+    ],
+    "prize": "2025 Nobel Prize in Physiology or Medicine"
+  },
+  {
+    "people": [
+      "John Clarke",
+      "Michel H. Devoret",
+      "John M. Martinis"
+    ],
+    "organizations": [
+      "Nature Portfolio"
+    ],
+    "prize": "Nobel Prize in Physics 2025"
+  },
+  {
+    "people": [
+      "Susumu Kitagawa",
+      "Richard Robson",
+      "Omar Yaghi"
+    ],
+    "organizations": [],
+    "prize": "2025 Nobel Prize in Chemistry"
+  },
+  {
+    "people": [
+      "László Krasznahorkai"
+    ],
+    "organizations": [
+      "The Swedish Academy"
+    ],
+    "prize": "2025 Nobel Prize in Literature"
+  },
+  {
+    "people": [
+      "María Corina Machado",
+      "Jørgen Watne Frydnes"
+    ],
+    "organizations": [
+      "Norwegian Nobel Committee"
+    ],
+    "prize": [
+      "Nobel Peace Prize"
+    ]
+  },
+  {
+    "people": [
+      "Joel Mokyr",
+      "Philippe Aghion",
+      "Peter Howitt"
+    ],
+    "organizations": [],
+    "prize": "Sveriges Riksbank Prize in Economic Sciences in Memory of Alfred Nobel"
+  }
+]
