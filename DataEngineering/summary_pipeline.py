@@ -18,8 +18,7 @@ def domain_of(url: str) -> str:
     except: return ""
 def is_refusal(text: str) -> bool:
     if not text: return True
-    pats = [r"很抱歉", r"无法提供", r"不予(?:显示|提供|回答)", r"违反(?:内容|安全|合规)", r"不支持的请求", r"违规"]
-    return any(re.search(p, text) for p in pats)
+
 
 _SENT_SPLIT = re.compile(r'(?<=[。！？!?\.])\s+(?=[A-Z“"(\[]|[A-Z][a-z])')
 def split_sentences(text: str):
@@ -50,8 +49,8 @@ def refactor_to_three_paragraphs(text: str):
     p3 = " ".join(sents[p1_len+p2_len:]).strip()
     return "\n\n".join([p for p in (p1,p2,p3) if p]).strip()
 
-_NOBEL_PAT = re.compile(r"\bNobel\b|诺贝尔|诺貝爾|诺奖|諾獎", re.IGNORECASE)
-_YEAR_2025_PAT = re.compile(r"\b2025\b|2025年")
+_NOBEL_PAT = re.compile(r"\bNobel\b|", re.IGNORECASE)
+_YEAR_2025_PAT = re.compile(r"\b2025\b|2025")
 
 def is_nobel_related(title: str, text: str = "") -> bool:
     t = (title or "").strip()
@@ -83,11 +82,11 @@ class AdaptiveLimiter:
             self.qps = max(self.min_qps, self.qps * 0.6)
             cool = 6.0 + random.random()*6.0
             self.cool_until = time.monotonic() + cool
-            log.warning(f"触发 429：降速到 {self.qps:.2f} QPS，并强冷却 {cool:.1f}s")
+            log.warning(f"set off 429：slowdown {self.qps:.2f} QPS，and freeze {cool:.1f}s")
     def punish_timeout(self):
         with self.lock:
             self.qps = max(self.min_qps, self.qps * 0.8)
-            log.warning(f"请求超时：降速到 {self.qps:.2f} QPS")
+            log.warning(f"quest over time ：slowdown {self.qps:.2f} QPS")
 
 #prompts
 TIMELINE_PREAMBLE = (
@@ -154,19 +153,19 @@ def call_glm(session: requests.Session, limiter: AdaptiveLimiter, api_key: str, 
                 time.sleep(1.2 + random.random()); continue
             if resp.status_code in (408, 500, 502, 503, 504):
                 wait = (1.8 + random.random()) * (2 ** attempt)
-                log.warning(f"临时错误 {resp.status_code}：{resp.text[:160]}...，{wait:.1f}s 后重试")
+                log.warning(f"default {resp.status_code}：{resp.text[:160]}...，{wait:.1f}s retry")
                 time.sleep(wait); continue
             raise RuntimeError(f"HTTP {resp.status_code}: {resp.text[:500]}")
         except (requests.Timeout, socket.timeout) as e:
             last_err = e; limiter.punish_timeout()
             if attempt < max_retries:
                 wait = (1.2 + random.random()) * (2 ** attempt)
-                log.warning(f"请求超时，{wait:.1f}s 后重试")
+                log.warning(f"quest over time，{wait:.1f}s retry")
                 time.sleep(wait); continue
             break
         except requests.RequestException as e:
             last_err = e; break
-    raise RuntimeError(f"模型调用失败：{last_err or 'unknown error'}")
+    raise RuntimeError(f"model unusable：{last_err or 'unknown error'}")
 
 # ---------------- main ----------------
 def main():
@@ -184,19 +183,19 @@ def main():
 
     # load timeline
     if not args.timeline or not os.path.exists(args.timeline):
-        log.warning("找不到 timeline 文件，只基于 headlines")
+        log.warning("can not find timeline ，try headlines")
         timeline = []
     else:
         timeline = load_json(args.timeline)
         if not isinstance(timeline, list):
             log.warning(" "); timeline = []
         else:
-            log.info(f"已加载 timeline：{args.timeline}（{len(timeline)} 条）")
+            log.info(f"loaded timeline：{args.timeline}（{len(timeline)} ）")
     # load news
     if not os.path.exists(args.input):
-        log.error(f"找不到输入文件：{args.input}"); return
+        log.error(f"none input file：{args.input}"); return
     data = load_json(args.input)
-    log.info(f"读取数据：{args.input}，总条目：{len(data)}")
+    log.info(f"load data：{args.input}，total：{len(data)}")
 
     nobel_items = []
     for it in data:
@@ -211,7 +210,7 @@ def main():
         out = os.path.join(args.output_dir, "final_summary.txt")
         with open(out, "w", encoding="utf-8") as f:
             f.write("No 2025 Nobel Prize–related timeline or headlines were found.")
-        log.info(f"已写出：{out}"); return
+        log.info(f"written：{out}"); return
 
     system_prompt = OVERALL_PROMPT
     blocks = []
@@ -239,7 +238,7 @@ def main():
                         {"role":"user","content":user_msg}],
                        model=args.model, temperature=0.26, max_tokens=2400, timeout=120)
     except Exception as e:
-        log.warning(f"生成失败：{e}")
+        log.warning(f"generate fail：{e}")
         raw = ""
 
     if is_refusal(raw):
@@ -252,7 +251,7 @@ def main():
     out_path = os.path.join(args.output_dir, "final_summary.txt")
     with open(out_path, "w", encoding="utf-8") as f:
         f.write(final)
-    log.info(f"已写出：{out_path}\n完成。")
+    log.info(f"written：{out_path}\n finish")
 
 if __name__ == "__main__":
     main()
