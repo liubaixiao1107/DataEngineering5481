@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2025 Nobel Prize Comprehensive Report | Nobel Prize Research Institute</title>
+    
+    <!-- Bootstrap CSS - Local Cache -->
+    <link rel="stylesheet" href="bootstrap.min.css">
+    
+    <!-- Custom Styles -->
+    <style>
+        :root {
+            --primary-color: #0d6efd;
+            --secondary-color: #6c757d;
+            --success-color: #198754;
+            --info-color: #0dcaf0;
+            --warning-color: #ffc107;
+            --danger-color: #dc3545;
+            --dark-color: #212529;
+            --light-color: #f8f9fa;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            background: var(--dark-color);
+            color: white;
+            padding: 10px 0;
+            font-size: 0.9rem;
+        }
+
+        .top-bar a {
+            color: white;
+            text-decoration: none;
+            margin-left: 15px;
+        }
+
+        .top-bar a:hover {
+            color: var(--info-color);
+        }
+
+        /* Navbar Custom */
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .navbar {
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+            color: white;
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-section h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .hero-section p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--dark-color);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        .section-header p {
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+        }
+
+        /* Cards */
+        .custom-card {
+            transition: transform 0.3s, box-shadow 0.3s;
+            height: 100%;
+            border: none;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .custom-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--primary-color);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 50px;
+            width: 45%;
+        }
+
+        .timeline-item:nth-child(odd) {
+            margin-left: 0;
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) {
+            margin-left: 55%;
+            text-align: left;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--primary-color);
+            border: 4px solid white;
+            border-radius: 50%;
+            box-shadow: 0 0 0 4px var(--primary-color);
+            top: 20px;
+        }
+
+        .timeline-item:nth-child(odd)::before {
+            right: -60px;
+        }
+
+        .timeline-item:nth-child(even)::before {
+            left: -60px;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .timeline-date {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        /* Entity Cards */
+        .entity-card {
+            background: var(--light-color);
+            border-left: 4px solid var(--primary-color);
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+        }
+
+        .entity-card:hover {
+            background: white;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+
+        .entity-card h5 {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #dee2e6;
+        }
+
+        .entity-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .entity-list li {
+            padding: 8px 0;
+            color: var(--dark-color);
+            display: flex;
+            align-items: center;
+        }
+
+        .entity-list li::before {
+            content: '▸';
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        /* Source Cards */
+        .source-card {
+            border-left: 4px solid var(--success-color);
+            transition: all 0.3s;
+        }
+
+        .source-card:hover {
+            border-left-color: var(--primary-color);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 60px 0 20px;
+            margin-top: 80px;
+        }
+
+        footer h5 {
+            color: white;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        footer a {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        footer a:hover {
+            color: var(--primary-color);
+        }
+
+        footer .list-unstyled li {
+            margin-bottom: 10px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #495057;
+            padding-top: 20px;
+            margin-top: 40px;
+            text-align: center;
+            color: #adb5bd;
+        }
+
+        /* Responsive Timeline */
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                margin-left: 40px !important;
+                text-align: left !important;
+            }
+
+            .timeline-item::before {
+                left: -30px !important;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            animation: fadeIn 0.8s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <span>📧 contact@nobelresearch.org</span>
+                    <span class="ms-3">📞 +1 (555) 123-4567</span>
+                </div>
+                <div class="col-md-6 text-end">
+                    <a href="#">English</a>
+                    <a href="#">中文</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <span class="badge bg-primary me-2">NP</span>
+                Nobel Prize Research
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#summary">Research Report</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#entities">Laureates</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#timeline">Timeline</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sources">Resources</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container hero-content">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h1 class="fade-in">2025 Nobel Prize Comprehensive Report</h1>
+                    <p class="lead fade-in">Exploring World-Changing Scientific Discoveries and Humanitarian Achievements | Authoritative · Professional · In-Depth</p>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-md-3 col-6 mb-3">
+                    <div class="stat-card">
+                        <span class="stat-number">6</span>
+                        <span>Nobel Prizes</span>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6 mb-3">
+                    <div class="stat-card">
+                        <span class="stat-number">18</span>
+                        <span>Laureates</span>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6 mb-3">
+                    <div class="stat-card">
+                        <span class="stat-number">6</span>
+                        <span>Authoritative Sources</span>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6 mb-3">
+                    <div class="stat-card">
+                        <span class="stat-number">8</span>
+                        <span>Days Coverage</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb" class="bg-light py-3">
+        <div class="container">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item"><a href="#">Research Reports</a></li>
+                <li class="breadcrumb-item active">2025 Nobel Prize Comprehensive Report</li>
+            </ol>
+        </div>
+    </nav>
+
+    <!-- Main Summary Section -->
+    <section id="summary" class="py-5">
+        <div class="container">
+            <div class="section-header">
+                <h2>Research Report Summary</h2>
+                <p>In-depth Analysis of Breakthrough Achievements in 2025 Nobel Prize Fields</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4">
+                    <div class="card custom-card">
+                        <div class="card-body">
+                            <h5 class="card-title text-primary">Scientific Breakthroughs</h5>
+                            <p class="card-text">The 2025 Nobel Prizes recognized outstanding contributions in Physiology or Medicine, Physics, and Chemistry. The Physiology or Medicine Prize was awarded to Mary E. Brunkow, Fred Ramsdell, and Shimon Sakaguchi for their groundbreaking discoveries in peripheral immune tolerance.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card custom-card">
+                        <div class="card-body">
+                            <h5 class="card-title text-success">Materials Science Innovation</h5>
+                            <p class="card-text">The Chemistry Prize was awarded to Susumu Kitagawa, Richard Robson, and Omar Yaghi for their pioneering work on metal-organic frameworks (MOFs). These porous materials have wide applications in gas storage, separation, and catalysis.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card custom-card">
+                        <div class="card-body">
+                            <h5 class="card-title text-info">Humanities and Social Contributions</h5>
+                            <p class="card-text">Hungarian author László Krasznahorkai received the Literature Prize for his "compelling and visionary oeuvre." The Peace Prize was awarded to Venezuelan opposition leader María Corina Machado.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card custom-card">
+                        <div class="card-body">
+                            <h5 class="card-title text-warning">Economic Theory Development</h5>
+                            <p class="card-text">Joel Mokyr, Philippe Aghion, and Peter Howitt's research on innovation-driven growth provides crucial insights for policymakers, demonstrating how Nobel-level research bridges theoretical understanding and practical application.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card custom-card">
+                        <div class="card-body">
+                            <h5 class="card-title text-danger">Interdisciplinary Impact</h5>
+                            <p class="card-text">The 2025 Nobel laureates collectively demonstrate the power of interdisciplinary thinking across scientific and humanistic domains, from the microscopic realm of immune tolerance to the macroscopic challenges of democratic transition and economic development.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card custom-card">
+                        <div class="card-body">
+                            <h5 class="card-title text-secondary">Future Application Prospects</h5>
+                            <p class="card-text">These breakthrough studies have profound implications for treating autoimmune diseases, quantum computing, carbon capture technology, and sustainable economic development, continuing to shape the future direction of human society.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Entities Section -->
+    <section id="entities" class="py-5 bg-light">
+        <div class="container">
+            <div class="section-header">
+                <h2>Laureates Directory</h2>
+                <p>2025 Nobel Prize Winners and Associated Research Institutions</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4">
+                    <div class="entity-card">
+                        <h5>🏥 Physiology or Medicine</h5>
+                        <ul class="entity-list">
+                            <li>Mary E. Brunkow</li>
+                            <li>Fred Ramsdell</li>
+                            <li>Shimon Sakaguchi</li>
+                        </ul>
+                        <h6 class="text-success mt-3">Associated Institutions</h6>
+                        <ul class="entity-list">
+                            <li>Nobel Assembly at Karolinska Institutet</li>
+                            <li>Karolinska Institutet</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="entity-card">
+                        <h5>⚛️ Physics</h5>
+                        <ul class="entity-list">
+                            <li>John Clarke</li>
+                            <li>Michel H. Devoret</li>
+                            <li>John M. Martinis</li>
+                        </ul>
+                        <h6 class="text-success mt-3">Associated Institutions</h6>
+                        <ul class="entity-list">
+                            <li>Nature Portfolio</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="entity-card">
+                        <h5>🧪 Chemistry</h5>
+                        <ul class="entity-list">
+                            <li>Susumu Kitagawa</li>
+                            <li>Richard Robson</li>
+                            <li>Omar Yaghi</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="entity-card">
+                        <h5>📚 Literature</h5>
+                        <ul class="entity-list">
+                            <li>László Krasznahorkai</li>
+                        </ul>
+                        <h6 class="text-success mt-3">Associated Institutions</h6>
+                        <ul class="entity-list">
+                            <li>The Swedish Academy</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="entity-card">
+                        <h5>🕊️ Peace</h5>
+                        <ul class="entity-list">
+                            <li>María Corina Machado</li>
+                            <li>Jørgen Watne Frydnes</li>
+                        </ul>
+                        <h6 class="text-success mt-3">Associated Institutions</h6>
+                        <ul class="entity-list">
+                            <li>Norwegian Nobel Committee</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="entity-card">
+                        <h5>💰 Economic Sciences</h5>
+                        <ul class="entity-list">
+                            <li>Joel Mokyr</li>
+                            <li>Philippe Aghion</li>
+                            <li>Peter Howitt</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section id="timeline" class="py-5">
+        <div class="container">
+            <div class="section-header">
+                <h2>Event Timeline</h2>
+                <p>2025 Nobel Prize Announcement Timeline</p>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-date">October 6, 2025</span>
+                        <p class="mb-0">The Nobel Assembly at Karolinska Institutet awarded the 2025 Nobel Prize in Physiology or Medicine to Mary E. Brunkow, Fred Ramsdell, and Shimon Sakaguchi for their discoveries concerning peripheral immune tolerance.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-date">October 7, 2025</span>
+                        <p class="mb-0">The 2025 Nobel Prize in Physics was awarded to John Clarke, Michel H. Devoret, and John M. Martinis for discovering macroscopic quantum tunnelling and energy quantisation in electrical circuits.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-date">October 8, 2025</span>
+                        <p class="mb-0">The 2025 Nobel Prize in Chemistry was awarded to Susumu Kitagawa, Richard Robson, and Omar Yaghi for pioneering metal-organic frameworks (MOFs).</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-date">October 9, 2025</span>
+                        <p class="mb-0">Hungarian author László Krasznahorkai won the 2025 Nobel Prize in Literature, with the Swedish Academy citing his "compelling and visionary oeuvre."</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-date">October 10, 2025</span>
+                        <p class="mb-0">Venezuelan opposition leader María Corina Machado won the 2025 Nobel Peace Prize in Oslo.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-date">October 13, 2025</span>
+                        <p class="mb-0">The Nobel Prize in Economic Sciences was awarded to Joel Mokyr, Philippe Aghion, and Peter Howitt for research on innovation-driven growth.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sources Section -->
+    <section id="sources" class="py-5 bg-light">
+        <div class="container">
+            <div class="section-header">
+                <h2>Resource Center</h2>
+                <p>Authoritative News Sources and References</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="card source-card custom-card">
+                        <div class="card-body">
+                            <h5 class="card-title">2025 Nobel Prize in Physiology or Medicine</h5>
+                            <p class="text-muted small mb-2">📅 Published: 2025-10-06</p>
+                            <p class="card-text">Awarded to Mary E. Brunkow, Fred Ramsdell, and Shimon Sakaguchi</p>
+                            <a href="https://news.ki.se/the-2025-nobel-prize-in-physiology-or-medicine-to-mary-e-brunkow-fred-ramsdell-and-shimon-sakaguchi" target="_blank" class="btn btn-outline-primary btn-sm">Read Article →</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card source-card custom-card">
+                        <div class="card-body">
+                            <h5 class="card-title">2025 Nobel Prize in Physics</h5>
+                            <p class="text-muted small mb-2">📅 Published: 2025-10-07</p>
+                            <p class="card-text">Awarded to John Clarke, Michel H. Devoret, and John M. Martinis</p>
+                            <a href="https://economictimes.indiatimes.com/news/international/world-news/nobel-prize-2025-when-how-the-worlds-most-prestigious-awards-unfold/articleshow/124253552.cms" target="_blank" class="btn btn-outline-primary btn-sm">Read Article →</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card source-card custom-card">
+                        <div class="card-body">
+                            <h5 class="card-title">Nobel Prize in Chemistry Awarded to Architects of Metal-Organic Frameworks</h5>
+                            <p class="text-muted small mb-2">📅 Published: 2025-10-08</p>
+                            <p class="card-text">Awarded to Susumu Kitagawa, Richard Robson, and Omar Yaghi</p>
+                            <a href="https://www.nytimes.com/2025/10/08/science/nobel-prize-chemistry.html" target="_blank" class="btn btn-outline-primary btn-sm">Read Article →</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card source-card custom-card">
+                        <div class="card-body">
+                            <h5 class="card-title">László Krasznahorkai Wins the 2025 Nobel Prize in Literature</h5>
+                            <p class="text-muted small mb-2">📅 Published: 2025-10-09</p>
+                            <p class="card-text">Swedish Academy praises his "compelling and visionary oeuvre"</p>
+                            <a href="https://www.theguardian.com/books/2025/oct/09/laszlo-krasznahorkai-wins-the-nobel-prize-in-literature-2025" target="_blank" class="btn btn-outline-primary btn-sm">Read Article →</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card source-card custom-card">
+                        <div class="card-body">
+                            <h5 class="card-title">María Corina Machado Wins the Nobel Peace Prize</h5>
+                            <p class="text-muted small mb-2">📅 Published: 2025-10-10</p>
+                            <p class="card-text">Venezuelan opposition leader receives this honor</p>
+                            <a href="https://apnews.com/article/nobel-peace-prize-oslo-41b6bff88e2d57af0917bcf778e132ad" target="_blank" class="btn btn-outline-primary btn-sm">Read Article →</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card source-card custom-card">
+                        <div class="card-body">
+                            <h5 class="card-title">Nobel Prize in Economics Awarded for Innovation-Driven Growth Research</h5>
+                            <p class="text-muted small mb-2">📅 Published: 2025-10-13</p>
+                            <p class="card-text">Awarded to Mokyr, Aghion, and Howitt</p>
+                            <a href="https://www.cnn.com/2025/10/13/business/nobel-prize-economics-winner-2025-intl" target="_blank" class="btn btn-outline-primary btn-sm">Read Article →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5>About Us</h5>
+                    <p>Nobel Prize Research Institute is dedicated to providing authoritative and professional Nobel Prize research reports and in-depth analysis.</p>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#summary">Research Report</a></li>
+                        <li><a href="#entities">Laureates Directory</a></li>
+                        <li><a href="#timeline">Event Timeline</a></li>
+                        <li><a href="#sources">Resource Center</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5>Contact Information</h5>
+                    <ul class="list-unstyled">
+                        <li>📧 contact@nobelresearch.org</li>
+                        <li>📞 +1 (555) 123-4567</li>
+                        <li>📍 Stockholm, Sweden</li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5>Data Sources</h5>
+                    <p>This report's data is sourced from multiple authoritative news organizations, collected, cleaned, and analyzed through an automated data pipeline.</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Nobel Prize Research Institute. All rights reserved. | This page is automatically generated by a data engineering pipeline</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS - Local Cache -->
+    <script src="bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom Scripts -->
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerOffset = 70;
+                    const elementPosition = target.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Navbar active state
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const sections = document.querySelectorAll('section[id]');
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.custom-card, .entity-card, .timeline-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
